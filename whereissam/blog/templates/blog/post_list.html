@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mijn Blog</title>
+</head>
+<body>
+    <h1>Blog Posts</h1>
+    <ul>
+        {% for post in posts %}
+            <li>
+                <a href="{% url 'post_detail' post.pk %}">{{ post.title }}</a> 
+                - {{ post.author }} ({{ post.created_at|date:"d M Y" }})
+            </li>
+        {% empty %}
+            <li>Geen posts gevonden.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

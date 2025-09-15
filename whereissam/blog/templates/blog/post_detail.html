@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ post.title }}</title>
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    {% if post.image %}
+        <img src="{{ post.image.url }}" alt="{{ post.title }}" style="max-width:600px;">
+    {% endif %}
+    <p><em>Door {{ post.author }} op {{ post.created_at|date:"d M Y H:i" }}</em></p>
+    <p><em>Windkracht: {{ post.windspeed }}</em></p>
+    <p><em>Windrichting: {{ post.winddirection }}</em></p>
+    <p><em>Zeestand: {{ post.seastate }}</em></p>
+    <p><em>Categorie:
+    {% for category in post.categories.all %}
+        {{ category.name }}{% if not forloop.last %}, {% endif %}
+    {% endfor %}</em></p>
+    <div>
+        {{ post.content|safe }}
+    </div>
+    <p><a href="{% url 'post_list' %}">← Terug naar overzicht</a></p>
+</body>
+</html>
