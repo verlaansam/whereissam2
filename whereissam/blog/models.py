@@ -1,7 +1,7 @@
 from ckeditor.fields import RichTextField
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.utils.text import slugify
 
 class Category(models.Model):
     name = models.CharField(max_length=100, unique=True)
@@ -29,6 +29,7 @@ class Seastate(models.Model):
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
+    slug = models.SlugField(unique=True, blank=True) 
     content = RichTextField()
     categories = models.ManyToManyField(Category, blank=True)  # Meerdere categorieën
     windspeed = models.ForeignKey(WindSpeed, on_delete=models.SET_NULL, null=True, blank=True)
@@ -37,6 +38,11 @@ class Post(models.Model):
     image = models.ImageField(upload_to='post_images/', blank=True, null=True)  # afbeelding
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
+
+    def save(self, *args, **kwargs):
+        if not self.slug:
+            self.slug = slugify(self.title)  # maak slug van de titel
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return self.title

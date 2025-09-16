@@ -2,18 +2,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Django Tailwind</title>
+    <title>{% block title %}Mijn Blog{% endblock %}</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     {% tailwind_css %}
 </head>
 
-<body class="h-screen bg-gray-50 text-black font-serif leading-normal tracking-normal">
+<body class="min-h-screen flex flex-col bg-gray-50 text-black font-serif leading-normal tracking-normal">
+
+    <!-- Navbar -->
+    <nav class="bg-white shadow">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="{% url 'post_list' %}" class="text-xl font-bold text-gray-800 hover:text-green-600">
+                🌊 Mijn Blog
+            </a>
+            <div class="space-x-4">
+                <a href="{% url 'post_list' %}" class="text-gray-600 hover:text-green-600">Home</a>
+                <a href="#" class="text-gray-600 hover:text-green-600">Over</a>
+                <a href="#" class="text-gray-600 hover:text-green-600">Contact</a>
+            </div>
+        </div>
+    </nav>
 
     <!-- Content -->
     <main class="flex-1 container mx-auto px-4 py-6">
         {% block content %}{% endblock %}
     </main>
+
+    <!-- Footer -->
+    <footer class="bg-white shadow mt-6">
+        <div class="container mx-auto px-4 py-4 text-center text-gray-600 text-sm">
+            &copy; {{ now|date:"Y" }} Mijn Blog. Alle rechten voorbehouden.
+        </div>
+    </footer>
+
 </body>
 </html>
