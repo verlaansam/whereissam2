@@ -6,25 +6,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://kit.fontawesome.com/d0f36b4707.js" crossorigin="anonymous"></script>
     {% tailwind_css %}
 </head>
 
-<body class="min-h-screen flex flex-col bg-gray-50 text-black font-serif leading-normal tracking-normal">
+<body class="h-screen flex flex-col bg-gray-50 text-black font-serif leading-normal tracking-normal">
+    <div class="relative w-full">
+            <script type="text/javascript">
+                var width="100%";
+                var height="300";
+                var names=true;                
+                var mmsi="244700620";
+                var show_track=true;
+            </script>
+            <script type="text/javascript" src="https://www.vesselfinder.com/aismap.js"></script>
+        </div>
+        <!-- Content -->
+        <main class="flex-1">
+            {% block content %}{% endblock %}
+        </main>
 
     <!-- Navbar -->
-    <nav class="bg-white shadow">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <!-- Logo -->
-            <a href="{% url 'post_list' %}" class="text-xl font-bold text-gray-800 hover:text-green-600">
-                🌊 Mijn Blog
-            </a>
-
+    <nav class="bg-white h-24">
             <!-- Menu -->
-            <div class="navbar">
-                <a href="{% url 'post_list' %}" class="text-gray-600 hover:text-green-600">Home</a>
-                <a href="#" class="text-gray-600 hover:text-green-600">Over</a>
-                <a href="#" class="text-gray-600 hover:text-green-600">Contact</a>
+            <div class="flex justify-between">
 
+                <a href="{% url 'post_list' %}" class="text-gray-600 hover:text-green-600"><i class="fa-solid fa-house"></i></a>
+                 <a href="#" class="text-gray-600 hover:text-green-600"><i class="fa-solid fa-book fa-2xl"></i></a>
+                <a href="#" class="text-gray-600 hover:text-green-600"><i class="fa-solid fa-user"></i></a>
+
+
+                <!-- probleem voor later
                 {% if user.is_authenticated %}
                     <a href="{% url 'profile' %}" class="text-gray-800 font-medium">👋 {{ user.first_name|default:user.username }}</a>
                     <form action="{% url 'logout' %}" method="post" class="inline">
@@ -35,21 +47,8 @@
                     <a href="{% url 'login' %}" class="text-gray-600 hover:text-green-600">Inloggen</a>
                     <a href="{% url 'signup' %}" class="text-gray-600 hover:text-green-600">Registreren</a>
                 {% endif %}
+                -->
             </div>
-        </div>
     </nav>
-
-    <!-- Content -->
-    <main class="flex-1 container mx-auto px-4 py-6">
-        {% block content %}{% endblock %}
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-white shadow mt-6">
-        <div class="container mx-auto px-4 py-4 text-center text-gray-600 text-sm">
-            &copy; {{ now|date:"Y" }} Mijn Blog. Alle rechten voorbehouden.
-        </div>
-    </footer>
-
 </body>
 </html>
