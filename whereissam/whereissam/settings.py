@@ -143,3 +143,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Tailwind CSS settings
 TAILWIND_APP_NAME = 'theme'
+
+#login settings
+LOGIN_REDIRECT_URL = 'post_list'
+LOGOUT_REDIRECT_URL = 'post_list'

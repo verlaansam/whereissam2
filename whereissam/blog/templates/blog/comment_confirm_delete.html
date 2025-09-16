@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Reactie verwijderen{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white shadow rounded-lg p-6">
+    <h1 class="text-2xl font-bold mb-4">Weet je zeker dat je deze reactie wilt verwijderen?</h1>
+    <p class="mb-4">{{ comment.content }}</p>
+
+    <form method="post" class="flex space-x-2">
+        {% csrf_token %}
+        <button type="submit"
+            class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">
+            Verwijderen
+        </button>
+        <a href="{% url 'post_detail' comment.post.slug %}"
+            class="bg-gray-300 hover:bg-gray-400 text-black font-bold py-2 px-4 rounded">
+            Annuleren
+        </a>
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}Registreren{% endblock %}
+
+{% block content %}
+<div class="max-w-md mx-auto bg-white shadow rounded-lg p-6">
+    <h1 class="text-2xl font-bold mb-4">Account aanmaken</h1>
+
+    <form method="post" class="space-y-4">
+        {% csrf_token %}
+        
+        <div>
+            <label for="id_username" class="block text-sm font-medium text-gray-700">Gebruikersnaam</label>
+            {{ form.username }}
+        </div>
+
+        <div>
+            <label for="id_first_name" class="block text-sm font-medium text-gray-700">Voornaam</label>
+            {{ form.first_name }}
+        </div>
+
+        <div>
+            <label for="id_last_name" class="block text-sm font-medium text-gray-700">Achternaam</label>
+            {{ form.last_name }}
+        </div>
+
+        <div>
+            <label for="id_email" class="block text-sm font-medium text-gray-700">E-mail</label>
+            {{ form.email }}
+        </div>
+
+        <div>
+            <label for="id_password1" class="block text-sm font-medium text-gray-700">Wachtwoord</label>
+            {{ form.password1 }}
+        </div>
+
+        <div>
+            <label for="id_password2" class="block text-sm font-medium text-gray-700">Herhaal wachtwoord</label>
+            {{ form.password2 }}
+        </div>
+
+        <button type="submit"
+            class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">
+            Registreren
+        </button>
+    </form>
+
+    <p class="mt-4 text-center text-sm text-gray-600">
+        Heb je al een account?
+        <a href="{% url 'login' %}" class="text-green-600 hover:underline">Log in</a>.
+    </p>
+</div>
+{% endblock %}
