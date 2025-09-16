@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'blog',
     'ckeditor',
     'tailwind',
-    'theme',
+    'theme'
 ]
 
 if DEBUG:
